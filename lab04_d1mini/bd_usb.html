@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>WBadUSB</title>
+  <script>
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById('status').innerHTML = xhttp.responseText;
+      }
+    };
+
+    function sendCmd(cmd) {
+      document.getElementById('status').innerHTML = '送出中...';
+      xhttp.open('GET', '/cmd?bd=' + cmd, true);
+      xhttp.send();
+    }
+
+    function sendText(){
+      document.getElementById('status').innerHTML = '送出中...';
+      var sendStr = document.getElementById('typeText').value;
+      xhttp.open('GET', '/cmd?bd=' + sendStr, true);
+      xhttp.send();
+      document.getElementById('typeText').value = '';
+    }
+    </script>
+</head>
+<body>
+  <h1>
+  <input style='width: 30%' type='button' value=' 開啟記事本 ' onClick='sendCmd("*notepad")'/>
+  <input style='width: 30%' type='button' value=' 開啟命令提示字元 ' onClick='sendCmd("*comd")'/>
+  <input style='width: 30%' type='button' value=' 關閉視窗 ' onClick='sendCmd("*exit")'/>
+  <input style='width: 30%' type='button' value=' Enter ' onClick='sendCmd("*enter")'/>
+  <input style='width: 30%' type='button' value=' Caps Lock ' onClick='sendCmd("*capslock")'/>
+  </h1>
+  <textarea rows='4' id='typeText'></textarea>
+  <input style='width: 30%' type='button' value=' SEND ' onClick='sendText()'/>  
+  <p id='status'>顯示訊息</p>
+</body>
+</html>

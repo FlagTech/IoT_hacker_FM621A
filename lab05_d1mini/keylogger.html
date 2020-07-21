@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>LAB05_Keylogger</title>
+  <script>
+    var xhttp = new XMLHttpRequest();
+    var logmsg = '';
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById('recvMsgArea').innerHTML = xhttp.responseText;        
+        logmsg = logmsg.concat(document.getElementById('recvMsgArea').value);
+        document.getElementById('logarea').innerHTML = logmsg;
+      }
+    };
+    var clock = setInterval(function() {      
+      xhttp.open('GET', '/cmd?getLog=1', true);
+      xhttp.send();
+    }, 2000);
+    function clearMsg(){
+    document.getElementById('logarea').innerHTML='訊息記錄區';
+    logmsg = '';
+    }
+    </script>
+</head>
+<body>
+  <h2>    
+    <p id='status'>目前接收訊息:</p>
+    <textarea style='font-size:24px ; width:90%' rows='1' readonly id='recvMsgArea'></textarea>    
+  </h2>
+  <hr>
+  <textarea style='width:90%' rows='10' readonly id='logarea'>訊息記錄區</textarea>
+  <input type='button' value='清除全部訊息' onclick='clearMsg()'>
+  
+  
+</body>
+</html>
