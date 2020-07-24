@@ -7,7 +7,7 @@ from DNSServer import DNSServer
 ap_if = network.WLAN(network.AP_IF)
 if not ap_if.active():
     ap_if.active(True)
-ap_if.config(essid="iTaiwan-fish")
+ap_if.config(essid="iTaiwan-fish", authmode=0) # authmode=0 代表不設定密碼
 
 # %% 建立DNS 伺服器, 並將所有域名導向 D1 mini 的 IP
 dnsserver = DNSServer()
