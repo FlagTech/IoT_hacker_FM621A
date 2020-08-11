@@ -31,7 +31,6 @@ void receiveEvent(int howMany)
     Serial.print("got!");
   }
   isRecv = true;
-  return str;
 }
 //開啟記事本
 void openNotepad(){ 
