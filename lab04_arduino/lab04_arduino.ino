@@ -80,18 +80,18 @@ void recvCmd(String cmdStr){
   if (cmdStr == "*notepad"){
       openNotepad();
     }
-  if (cmdStr == "*comd"){
+  else if (cmdStr == "*comd"){
       openComd();
     } 
-  if (cmdStr == "*exit"){
+  else if (cmdStr == "*exit"){
       exitApp();
     }         
-  if (cmdStr == "*capslock"){ // 開啟或關閉大寫鎖定
+  else if (cmdStr == "*capslock"){ // 開啟或關閉大寫鎖定
     Keyboard.press(KEY_CAPS_LOCK);  
     delay(50);
     Keyboard.release(KEY_CAPS_LOCK);  
     }         
-  if (cmdStr == "*enter"){
+  else if (cmdStr == "*enter"){
     Keyboard.press(KEY_RETURN);
     delay(50);
     Keyboard.releaseAll();
